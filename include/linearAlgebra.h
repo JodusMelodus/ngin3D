@@ -4,8 +4,8 @@
 #include <inttypes.h>
 #include <math.h>
 
-typedef double Matrix3x3[9];
-typedef double Matrix2x2[4];
+typedef double Matrix3x3[3 * 3];
+typedef double Matrix2x2[2 * 2];
 typedef double Vector2[2];
 typedef double Vector3[3];
 
