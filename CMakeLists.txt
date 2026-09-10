@@ -49,6 +49,7 @@ target_include_directories(glad PUBLIC
 
 add_executable(physics-engine
     src/main.c
+    src/linearAlgebra.c
 )
 
 target_include_directories(physics-engine PRIVATE
