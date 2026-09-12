@@ -5,8 +5,13 @@
 
 #include "shader.h"
 
-void mainLoop(double dt)
+void mainLoop(struct Shader *shader, double dt)
 {
+    glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    shaderUse(shader);
+    shaderDrawLine(shader);
 }
 
 int main(void)
@@ -57,13 +62,14 @@ int main(void)
         double dt = glfwGetTime();
         glfwSetTime(0);
 
-        mainLoop(dt);
+        mainLoop(&shader, dt);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
     }
 
     glfwDestroyWindow(window);
+    shaderDestroy(&shader);
     glfwTerminate();
 
     return 0;
