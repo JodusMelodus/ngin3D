@@ -3,6 +3,8 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+#include "shader.h"
+
 void mainLoop(double dt)
 {
 }
@@ -44,6 +46,11 @@ int main(void)
 
     printf("OpenGL: %s\n", glGetString(GL_VERSION));
     printf("Renderer: %s\n", glGetString(GL_RENDERER));
+
+    // Shader
+
+    struct Shader shader = createShader("..\\shaders\\basic.vert", "..\\shaders\\basic.frag");
+    shaderUse(&shader);
 
     while (!glfwWindowShouldClose(window))
     {
