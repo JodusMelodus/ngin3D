@@ -5,6 +5,11 @@
 #include <stdio.h>
 #include <inttypes.h>
 
+struct Color
+{
+    uint8_t r, g, b, a;
+};
+
 static char *readFile(const char *path)
 {
     FILE *file = fopen(path, "rb");

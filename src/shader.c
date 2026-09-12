@@ -67,10 +67,11 @@ struct Shader createShader(const char *vertexPath, const char *fragmentPath)
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    struct Shader shader;
-    shader.id = program;
+    GLint colorLocation = glGetUniformLocation(program, "meshColor");
 
-    return shader;
+    return (struct Shader){
+        .id = program,
+        .colorLocation = colorLocation};
 }
 
 void shaderUse(struct Shader *shader)
@@ -81,4 +82,14 @@ void shaderUse(struct Shader *shader)
 void shaderDestroy(struct Shader *shader)
 {
     glDeleteProgram(shader->id);
+}
+
+void shaderSetColor(struct Shader *shader, struct Color color)
+{
+    glUniform4f(
+        shader->colorLocation,
+        color.r / UINT8_MAX,
+        color.g / UINT8_MAX,
+        color.b / UINT8_MAX,
+        color.a / UINT8_MAX);
 }

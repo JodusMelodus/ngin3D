@@ -2,19 +2,30 @@
 #define OBJECT_H
 
 #include "linearAlgebra.h"
+#include "shader.h"
+#include "mesh.h"
 
-#define OBJECT_COUNT 50
+#include <glad/glad.h>
+#include <GLFW/glfw3.h>
+#include <string.h>
 
-typedef struct
+#define MAX_OBJECT_COUNT 50
+
+struct Object
 {
+    struct Mesh mesh;
     Vector3 r;
     Vector3 f;
     Vector3 dimensions;
+    struct Color color;
     double mass;
-} Object;
+};
 
-Object objects[OBJECT_COUNT] = {0};
+extern uint8_t objectCount;
+extern struct Object objects[MAX_OBJECT_COUNT];
 
-void drawObjects();
+void addObject(Vector3 r);
+void drawObject(struct Shader *shader, struct Object *object);
+void drawObjects(struct Shader *shader);
 
 #endif
