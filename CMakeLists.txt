@@ -52,6 +52,7 @@ add_executable(physics-engine
     src/linearAlgebra.c
     src/object.c
     src/shader.c
+    src/mesh.c
 )
 
 target_include_directories(physics-engine PRIVATE

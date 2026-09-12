@@ -4,14 +4,14 @@
 #include <GLFW/glfw3.h>
 
 #include "shader.h"
+#include "mesh.h"
 
-void mainLoop(struct Shader *shader, double dt)
+void mainLoop(struct Mesh *mesh, double dt)
 {
     glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    shaderUse(shader);
-    shaderDrawLine(shader);
+    drawMesh(mesh);
 }
 
 int main(void)
@@ -57,12 +57,18 @@ int main(void)
     struct Shader shader = createShader("..\\shaders\\basic.vert", "..\\shaders\\basic.frag");
     shaderUse(&shader);
 
+    float vertices[] = {
+        -0.5f, -0.5f, 0.0f,
+        0.5f, -0.5f, 0.0f,
+        0.0f, 0.5f, 0.0f};
+    struct Mesh mesh = createMesh(vertices, 3);
+
     while (!glfwWindowShouldClose(window))
     {
         double dt = glfwGetTime();
         glfwSetTime(0);
 
-        mainLoop(&shader, dt);
+        mainLoop(&mesh, dt);
 
         glfwSwapBuffers(window);
         glfwPollEvents();
