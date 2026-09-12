@@ -3,6 +3,10 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
+void mainLoop(double dt)
+{
+}
+
 int main(void)
 {
     if (!glfwInit())
@@ -56,8 +60,4 @@ int main(void)
     glfwTerminate();
 
     return 0;
-}
-
-void mainLoop(double dt)
-{
 }
